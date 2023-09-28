@@ -37,7 +37,7 @@ class RegisterController extends AbstractController
             $user->setPassword($password);
 
             //je savegarde tous en bdd
-            $userRepository->save($user);
+            $userRepository->save($user, true);
         }
 
         return $this->render('register/index.html.twig', [
