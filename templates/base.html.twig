@@ -108,10 +108,11 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container marketing" {% if block('carousel') is defined %} mt-5 {% endif %}>
+    <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %}">
 
        {% block body %}
        {% endblock %}
+
     </div><!-- /.container -->
 
     <!-- FOOTER -->
