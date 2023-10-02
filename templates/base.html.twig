@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>{% block title %} my commerce {% endblock %} </title>
+    <title>{% block title %} E-commerce {% endblock %} </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -33,7 +33,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{{ path('home')}}">my commerce </a>
+        <a class="navbar-brand" href="{{ path('home')}}">E-commerce </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,6 +56,9 @@
                     <a class="mr-2" href="{{ path('app_login') }}">Connexion</a> | <a class="ml-2" href="{{ path('register') }}">Incription</a>
                 {% endif %}
             </div>
+            <a href="{{path('cart')}}">
+                <img src="{{ asset('assets/images/shopping-cart.png') }}" class="cart-icon" alt="Mon panier">
+            </a>
         </div>
     </nav>
 </header>
