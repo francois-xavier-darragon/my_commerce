@@ -35,12 +35,12 @@ class AccountAddressController extends AbstractController
 
             $addressRepository->save($address, true);
 
-            // if($cart->get()) {
-            //     // return $this->redirectToRoute('order');
-            // } else {
+            if($cart->get()) {
+                return $this->redirectToRoute('order');
+            } else {
                 return $this->redirectToRoute('account_address');
 
-            // }
+            }
         }
 
         return $this->render('account/address_form.html.twig', [

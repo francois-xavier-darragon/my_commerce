@@ -21,6 +21,38 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    public function save(Order $order, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($order);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function onPersit(Order $order){
+
+        $this->getEntityManager()->persist($order);
+    }
+
+    public function onFlush(bool $flush = false){
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function findSuccessOrders($user)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.isPaid = 1')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('o.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+ 
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */

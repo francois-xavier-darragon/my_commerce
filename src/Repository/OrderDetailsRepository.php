@@ -21,6 +21,27 @@ class OrderDetailsRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderDetails::class);
     }
 
+    public function save(OrderDetails $orderDetails, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($orderDetails);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function onPersit(OrderDetails $orderDetails){
+
+        $this->getEntityManager()->persist($orderDetails);
+    }
+
+    public function onFlush(bool $flush = false){
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return OrderDetails[] Returns an array of OrderDetails objects
 //     */

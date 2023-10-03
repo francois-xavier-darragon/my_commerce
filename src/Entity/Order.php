@@ -28,7 +28,7 @@ class Order
     private ?string $carrierName = null;
 
     #[ORM\Column]
-    private ?float $carrierPriece = null;
+    private ?float $carrierPrice = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $delivery = null;
@@ -36,11 +36,21 @@ class Order
     #[ORM\OneToMany(mappedBy: 'myOrder', targetEntity: OrderDetails::class)]
     private Collection $orderDetails;
 
+    #[ORM\Column]
+    private ?bool $isPaid = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $reference = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
     }
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -82,14 +92,14 @@ class Order
         return $this;
     }
 
-    public function getCarrierPriece(): ?float
+    public function getCarrierPrice(): ?float
     {
-        return $this->carrierPriece;
+        return $this->carrierPrice;
     }
 
-    public function setCarrierPriece(float $carrierPriece): static
+    public function setCarrierPrice(float $carrierPrice): static
     {
-        $this->carrierPriece = $carrierPriece;
+        $this->carrierPrice = $carrierPrice;
 
         return $this;
     }
@@ -132,6 +142,54 @@ class Order
                 $orderDetail->setMyOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): static
+    {
+        $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    public function getTotal()
+    {
+        $total = null;
+
+        foreach ($this->getOrderDetails()->getValues() as $product) {
+
+            $total += ($product->getPrice() * $product->getQuantity());
+        }
+
+        return $total;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): static
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): static
+    {
+        $this->stripeSessionId = $stripeSessionId;
 
         return $this;
     }
