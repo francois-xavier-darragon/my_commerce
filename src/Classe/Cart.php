@@ -29,7 +29,7 @@ class Cart
         if($this->get()) {
             foreach ($this->get() as $id => $quantity) {
                 $productObject = $this->productRepository->findOneById($id);
-
+                
                 if(!$productObject) {
                     $this->delete($id);
                     continue;
@@ -41,7 +41,6 @@ class Cart
                 ];
             }
         }
-
         return $cartComplet;
     }
 

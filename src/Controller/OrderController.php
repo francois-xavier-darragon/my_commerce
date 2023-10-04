@@ -80,6 +80,7 @@ class OrderController extends AbstractController
             //Enregistrer mes  produits OrderDetails
            
             foreach ($cart->getFull() as $product){
+                // dd($product['product']->getIllustration());
                 $orderDetails = new OrderDetails(); 
                 $orderDetails->setMyOrder($order);
                 $orderDetails->setProduct($product['product']->getName());

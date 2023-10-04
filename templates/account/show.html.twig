@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1> Ma commande {{ order.reference }}</h1>
-    <a href="{{ path('account_order') }}">Retour</a>
+  
     <hr>
     <strong>Commande passé le : </strong>{{ order.createAt|date('d/m/y') }}<br/>
     <strong>Référence de ma commande : </strong><small>{{ order.reference }}</small><br/>
@@ -15,6 +15,7 @@
     <table class="table mt-4">
         <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col">Produit</th>
             <th scope="col">Quantité</th>
             <th scope="col">Prix unitaire</th>
@@ -25,7 +26,8 @@
         {% for product in order.orderDetails %}
         
         <tr>
-            <td><img src="{{ illustration }}" class="mr-2" height="75px" alt="Image">{{ product.product }}</td>
+            {# <td width="10px"><img src="{{ illustration }}" height="75px" alt="Image"></td> #}
+            <td>{{ product.product }}</td>
             <td>x {{ product.quantity }}</td>
             <td>{{ (product.price / 100)|number_format(2, ',', '.')}} €</td>
             <td>{{ (product.total / 100)|number_format(2, ',', '.')}} €</td>
@@ -39,6 +41,6 @@
         <strong>Livraison : </strong> {{ (order.carrierprice /100)|number_format(2, ',', '.')}} €<br/>
         <strong>Total : </strong> {{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2, ',', '.') }} €
     </div>
-
-
+    <hr>
+  <a class="btn btn-secondary" href="{{ path('account_order') }}">Retour</a>
 {% endblock %}
