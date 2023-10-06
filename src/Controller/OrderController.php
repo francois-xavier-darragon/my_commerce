@@ -73,7 +73,7 @@ class OrderController extends AbstractController
             // On converti les valeurs en centimes pour les stocker en bdd
             $order->setCarrierPrice($carrier->getPrice());
             $order->setDelivery($deliveryContent);
-            $order->setIsPaid(0);
+            $order->setState(0);
 
             $orderRepository->onPersit($order);
             

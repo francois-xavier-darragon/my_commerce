@@ -22,14 +22,14 @@ class OrderValidateController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        if(!$order->getIsPaid()) {
+        if($order->getState() == 0 ) {
             $cart->remove();
 
             //Modifier le status isPaid de la commande
-            $order->setIsPaid(1);
+            $order->setState(1);
             $orderRepository->onFlush(true);
 
-            //TODO Enoyer un un email de confirmation de payment
+            //Envoie un un email de confirmation de payment
             $mail = new Mail();
             $content= "Bonjour ".$order->getUser()->getFirstname()."<br/> Merci Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
             $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), "Votre commande sue E-commerce est bien validé", $content);

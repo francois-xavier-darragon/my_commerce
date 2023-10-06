@@ -17,7 +17,7 @@ class Mail
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "fxd15130@gmail",
+                        'Email' => "fxd15130@email.fr",
                         'Name' => "FXD"
                     ],
                     'To' => [
