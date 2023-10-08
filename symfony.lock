@@ -35,28 +35,16 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
-    "mailgun/mailgun-php": {
-        "version": "3.6",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "2.3",
-            "ref": "9aea325919644b58a53edf71d1212005e7081cad"
-        },
-        "files": [
-            "config/packages/mailgun.yaml"
-        ]
-    },
-    "php-http/discovery": {
-        "version": "1.19",
+    "nyholm/psr7": {
+        "version": "1.8",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "1.18",
-            "ref": "f45b5dd173a27873ab19f5e3180b2f661c21de02"
+            "version": "1.0",
+            "ref": "4a8c0345442dcca1d8a2c65633dcf0285dd5a5a2"
         },
         "files": [
-            "config/packages/http_discovery.yaml"
+            "config/packages/nyholm_psr7.yaml"
         ]
     },
     "phpunit/phpunit": {

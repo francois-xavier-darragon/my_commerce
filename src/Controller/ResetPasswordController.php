@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Classe\Mail;
 use App\Entity\ResetPassword;
 use App\Form\ResetPasswordType;
 use App\Repository\ResetPasswordRepository;
 use App\Repository\UserRepository;
+use App\Service\Mail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ResetPasswordController extends AbstractController
 {
     #[Route('/mot-de-passe-oublié', name: 'reset_password')]
-    public function index(Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository): Response
+    public function index(Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, ParameterBagInterface $params): Response
     {
         if($this->getUser()){
            return $this->redirectToRoute('home');
@@ -39,7 +40,7 @@ class ResetPasswordController extends AbstractController
                 $content = " Bonjour ".$user->getFirstName(). "<br/> Vous avez demandé de réinitialier votre mot de passe" ;
                 $content .= " Merci de bien voulir cliquer sur le lien suivant pour <a href='". $url ."'>mettre à jour votre mot de passe </a>";
             
-                $mail = new Mail();
+                $mail = new Mail($params);
                 $mail->send($user->getEmail(), $user->getFirstName().' '.$user->getLastName(), 'Réinitialisez votre mot de passe', $content);
                 
                 $this->addFlash('notice','Vous allez recevoir un email de réinitialisation.');
