@@ -43,6 +43,7 @@ class RegisterController extends AbstractController
                 $mail = new Mail();
                 $content= "Bonjour ".$user->getFirstname()."<br/> Bienvenue Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
                 $mail->send($user->getEmail(), $user->getFirstname(), "Bienvenue sur E-commerce", $content);
+
                 $notification = "Votre inscription c'est correctemt déroulée. Vous pouvez dès à présent vous connecter à votre compte.";
             } else {
                 $notification = "L'email que vous avez renseigné existe déjà.";
