@@ -8,8 +8,6 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class Mail
 {
-    // private $apiKey = '0001ea847e641931dc5359dae58e8ccc';
-    // private $apiSecretKey = '1f70b514699f2cdcbf3b01fa8ee47d68';
     
     private $params;
 
