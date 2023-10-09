@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter E-Commerce{% endblock %}
+
+{% block body %}
+    <h2> Nous contacter </h2>
+    <p> N'hésitez pas à prendre contact avec notre équipe, nous ous répondreons dans les meilleurs délais.</p>
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{message}}</div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-8"> {{form(form)}} </div>
+        <div class="col-md-4">
+            <strong>E-commerce</strong>
+            <hr>
+            06 85 65 69 11 <br/>
+            8 Rue du coin. 75800 Paris. <br/>
+            contact@E-commerce.com <br/>
+        </div>
+    </div>
+{% endblock %}
+
