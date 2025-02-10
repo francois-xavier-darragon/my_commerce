@@ -77,16 +77,20 @@
         </ol>
         <div class="carousel-inner">
         {% for key, header in headers %}
-            <div class="carousel-item {% if key == 0 %} active {% endif %} " style="background: url('uploads/{{ header.illustration }}'); background-size:cover ";>
+        <div class="carousel-item {% if key == 0 %} active {% endif %}" style="background: url('uploads/{{ header.illustration }}'); background-size: cover;">
+            <!-- Ajout d'un overlay semi-transparent -->
+            <div class="header-background">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>{{header.title}}</h1>
-                        <p>{{header.content}}</p>
+                        <!-- Ajout d'une ombre portée au texte -->
+                        <h1 class="header-text">{{header.title}}</h1>
+                        <p class="header-text">{{header.content}}</p>
                         <p><a class="btn btn-lg btn-info" href="{{header.btnUrl}}" role="button">{{header.btnTitle}}</a></p>
                     </div>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+{% endfor %}
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
